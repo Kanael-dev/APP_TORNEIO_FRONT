@@ -1,79 +1,79 @@
 console.log("====== Startou execução ==========");
 
-const url = "http://127.0.0.1:5000";
+const url = "https://app-torneio.onrender.com";
 const requestForms = "/forms"
 const requestFormsInformations = "/valide_forms"
 const requestAddUser = "/players"
 let idFormsGeneral = null
 
 window.addEventListener("load", (event) => {
-  
-  const options = {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    //body: JSON.stringify(data),
-  };
 
-  fetch(url+requestForms, options)
-    .then((response) => response.json())
-    .then((data) => {
-        if(data["forms"] == 0){
-            
-            const mostrarMensagem = document.getElementById("statusRequest")
-            removeForms()
-            mostrarMensagem.innerText = "Sem nenhum evento para o momento"
-            disponibilizaForms()
-        } else {
-            const id = data["forms"];
-            idFormsGeneral = id;
-            validadorUsuarios(id)
-        }
-    })
-    .catch((error) => console.error("Error:", error));
+    const options = {
+        method: "get",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        //body: JSON.stringify(data),
+    };
+
+    fetch(url + requestForms, options)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data["forms"] == 0) {
+
+                const mostrarMensagem = document.getElementById("statusRequest")
+                removeForms()
+                mostrarMensagem.innerText = "Sem nenhum evento para o momento"
+                disponibilizaForms()
+            } else {
+                const id = data["forms"];
+                idFormsGeneral = id;
+                validadorUsuarios(id)
+            }
+        })
+        .catch((error) => console.error("Error:", error));
 });
 
 // valida se tem vagas disponiveis
-function validadorUsuarios(id){
+function validadorUsuarios(id) {
 
     disponibilizaForms()
 
-    fetch(url+requestFormsInformations, {
+    fetch(url + requestFormsInformations, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({"id": id})
+        body: JSON.stringify({ "id": id })
     })
-    .then((response) => response.json())
-    .then((data) => {
-         const qtdVagasDisponiveis = data["vagas"]
-        if (qtdVagasDisponiveis== 0) {
-            removeForms()
-            mostrarVagas(qtdVagasDisponiveis)
-        } else {
-            mostrarVagas(qtdVagasDisponiveis)
-        }
-    })
-    .catch((error) => console.error("Error:", error));
+        .then((response) => response.json())
+        .then((data) => {
+            const qtdVagasDisponiveis = data["vagas"]
+            if (qtdVagasDisponiveis == 0) {
+                removeForms()
+                mostrarVagas(qtdVagasDisponiveis)
+            } else {
+                mostrarVagas(qtdVagasDisponiveis)
+            }
+        })
+        .catch((error) => console.error("Error:", error));
 }
 
 // Disponibilizar o formulario para os usuarios
-function disponibilizaForms(){
+function disponibilizaForms() {
     const loading = document.getElementById("loading_settings")
     if (loading) loading.remove()
 }
 
-function removeForms(){
+function removeForms() {
     const FormsUsers = document.getElementById("formsCadastroUser")
     const btnUser = document.getElementById("btnCadastrarUser")
-    if (FormsUsers) {FormsUsers.remove(); btnUser.remove()}
+    if (FormsUsers) { FormsUsers.remove(); btnUser.remove() }
 }
 
 
 
-function mostrarVagas(qtdVagas){
+function mostrarVagas(qtdVagas) {
     const mostrarVagas = document.getElementById("numVagas");
 
     const textUsers = qtdVagas
@@ -83,7 +83,7 @@ function mostrarVagas(qtdVagas){
 
 
 // SALVAR INFORMACOES NO BANCO DE DADOS
-function getInformationsUser(){
+function getInformationsUser() {
     console.log("Processando usuario")
 
     const UserNick = document.getElementById("userNick").value;
@@ -91,47 +91,105 @@ function getInformationsUser(){
     const UserElo = document.getElementById("userElo").value;
 
     dataUsers = {
-         "name": UserNick,
-         "tag": UserTag,
-         "elo": UserElo
-     }
+        "name": UserNick,
+        "tag": UserTag,
+        "elo": UserElo
+    }
 
-     confirmarInclusao()
+    confirmarInclusao()
 }
 
-function addUser(data){
-    fetch(url+requestAddUser, {
+function addUser(data) {
+    fetch(url + requestAddUser, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
     })
-    .then((response) => response.json())
-    .then((data) => {
-        const messageUser = document.getElementById("statusRequest");
-        messageUser.innerText = data["message"]
-    })
-    .catch((error) => console.error("Error:", error));
+        .then((response) => response.json())
+        .then((data) => {
+            const messageUser = document.getElementById("statusRequest");
+            messageUser.innerText = data["message"]
+        })
+        .catch((error) => console.error("Error:", error));
 }
 
-function confirmarInclusao(){
-    fetch(url+requestFormsInformations, {
+function confirmarInclusao() {
+    fetch(url + requestFormsInformations, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({"id": idFormsGeneral})
+        body: JSON.stringify({ "id": idFormsGeneral })
     })
-    .then((response) => response.json())
-    .then((data) => {
-         const qtdVagasDisponiveis = data["vagas"]
-        if (qtdVagasDisponiveis || 0) {
-            addUser(dataUsers)
-        } else {
-            alert("Nao foi possivel cadastrar! As vagas foram encerradas")
-            window.location.reload()
-        }
-    })
-    .catch((error) => console.error("Error:", error));
+        .then((response) => response.json())
+        .then((data) => {
+            const qtdVagasDisponiveis = data["vagas"]
+            if (qtdVagasDisponiveis || 0) {
+                addUser(dataUsers)
+            } else {
+                alert("Nao foi possivel cadastrar! As vagas foram encerradas")
+                window.location.reload()
+            }
+        })
+        .catch((error) => console.error("Error:", error));
 }
+var idioma = (navigator.browserLanguage != undefined) ?
+    navigator.browserLanguage : navigator.language;
+    const translations = {
+    en: {
+        welcome: "Welcome",
+        login: "Login",
+        logout: "Logout",
+        message: "This is an example message.",
+        buttonCadastrese: "Sign Up",
+        placeholderNick: "Nickname",
+       
+    },
+    fr: {
+        welcome: "Bienvenue",
+        login: "Connexion",
+        logout: "Déconnexion",
+        message: "Ceci est un message d'exemple.",
+        buttonCadastrese: "Inscrevez-vous",
+        placeholderNick: "Surname",
+        
+    },
+    pt: {
+        welcome: "Bem-vindo",
+        login: "Entrar",
+        logout: "Sair",
+        message: "Esta é uma mensagem de exemplo.",
+        buttonCadastrese: "Cadastre-se",
+        placeholderNick: "Nickname",
+   
+
+    }
+};
+
+console.log(idioma)
+var lingua = idioma.substring(0, 2)
+function mostrarIdioma(lingua) {
+
+
+    console.log(lingua)
+    const inputElemento = document.getElementById('botao')
+    const inputNick = document.getElementById('userNick')
+    switch (lingua) {
+        case "pt":
+            inputElemento.innerText = translations[lingua]["buttonCadastrese"]; 
+            inputNick.placeholder = translations[lingua]["placeholderNick"]; break
+        case "fr":
+            inputElemento.innerText = translations[lingua]["buttonCadastrese"];
+            inputNick.placeholder = translations[lingua]["placeholderNick"]; break
+        case "en":
+            inputElemento.innerText = translations[lingua]["buttonCadastrese"];
+            inputNick.placeholder = translations[lingua]["placeholderNick"]; break
+    }
+    console.log("final de execução");
+
+}
+
+mostrarIdioma("fr")
+
