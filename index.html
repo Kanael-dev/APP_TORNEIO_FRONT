@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="loading" id="loading_settings"></div>
+    <div class="container">
+
+        <div id="formsCadastroUser">
+            <input placeholder="Nick" type="text" id="userNick" required/>
+            <input placeholder="Tag" type="text" id="userTag" required/>
+            <input placeholder="Elo" type="text" id="userElo" required/>
+        </div>
+        
+        <div id="btnCadastrarUser">
+            <button onclick="getInformationsUser()">Cadastre-se</button>
+        </div>
+        <div id="aaaa">
+            <p id="qtdVagas">Quantidade de vagas</p>
+            <p id="numVagas"></p>
+        </div>
+        <p id="statusRequest"></p>
+
+
+    </div>
+    <script src="./javascript/index.js"></script>
+</body>
+</html>
