@@ -191,5 +191,5 @@ function mostrarIdioma(lingua) {
 
 }
 
-mostrarIdioma("fr")
+mostrarIdioma(lingua)
 
