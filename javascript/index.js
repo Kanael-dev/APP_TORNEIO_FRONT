@@ -115,6 +115,7 @@ function addUser(data) {
         .catch((error) => console.error("Error:", error));
 }
 
+// Confirma a inclusao do item na base de dados
 function confirmarInclusao() {
     fetch(url + requestFormsInformations, {
         method: "post",
@@ -168,6 +169,8 @@ var idioma = (navigator.browserLanguage != undefined) ?
     }
 };
 
+
+// Mostra o idioma do usuario ligado
 console.log(idioma)
 var lingua = idioma.substring(0, 2)
 function mostrarIdioma(lingua) {
