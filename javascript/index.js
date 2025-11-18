@@ -179,16 +179,13 @@ function mostrarIdioma(lingua) {
     console.log(lingua)
     const inputElemento = document.getElementById('botao')
     const inputNick = document.getElementById('userNick')
-    switch (lingua) {
-        case "pt":
-            inputElemento.innerText = translations[lingua]["buttonCadastrese"]; 
-            inputNick.placeholder = translations[lingua]["placeholderNick"]; break
-        case "fr":
-            inputElemento.innerText = translations[lingua]["buttonCadastrese"];
-            inputNick.placeholder = translations[lingua]["placeholderNick"]; break
-        case "en":
-            inputElemento.innerText = translations[lingua]["buttonCadastrese"];
-            inputNick.placeholder = translations[lingua]["placeholderNick"]; break
+    if (translations[lingua]) {
+        if (inputElemento) {
+            inputElemento.innerText = translations[lingua].buttonCadastrese;
+        }
+        if (inputNick) {
+            inputNick.placeholder = translations[lingua].placeholderNick;
+        }
     }
     console.log("final de execução");
 
