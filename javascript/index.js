@@ -193,3 +193,28 @@ function mostrarIdioma(lingua) {
 
 mostrarIdioma(lingua)
 
+const imagens = [
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+    "imagens/foto cinza.webp",
+];
+
+const imagem = document.getElementById("imagem")
+imagens.forEach(src => {
+    const link = document.createElement("a")
+    link.href = "#";
+
+    const img = document.createElement("img")
+    img.src = src;
+
+    link.appendChild(img);
+    imagem.appendChild(link);
+}); 
+
