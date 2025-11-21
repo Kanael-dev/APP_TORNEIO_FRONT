@@ -102,6 +102,8 @@ button:hover {
     }
 }
 
+
+/* ===== Container Imagens ===== */
 #imagens {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -110,7 +112,7 @@ button:hover {
 }
 
 #imagem a img {
-    width: 100%;
+    width: 30%;
     height: 60px;
     object-fit: cover;
     border-radius: 6px;
