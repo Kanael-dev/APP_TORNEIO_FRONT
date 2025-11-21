@@ -86,16 +86,40 @@ button:hover {
 }
 
 /* ===== Loading opcional ===== */
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* Overlay de loading cobrindo toda a tela */
 .loading {
+    position: fixed;      /* cobre o viewport inteiro */
+    inset: 0;             /* equivale a top/right/bottom/left: 0 */
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Círculo girando */
+.loading::before {
+    content: "";
     width: 60px;
     height: 60px;
     border: 6px solid rgba(255, 255, 255, 0.3);
     border-top: 6px solid white;
     border-radius: 50%;
-    margin: auto;
     animation: spin 1s linear infinite;
 }
 
+/* Animação */
 @keyframes spin {
     to {
         transform: rotate(360deg);
