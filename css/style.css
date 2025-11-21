@@ -104,7 +104,7 @@ button:hover {
 
 
 /* ===== Container Imagens ===== */
-#imagens {
+#imagem {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 12px;
