@@ -5,7 +5,7 @@ const requestForms = "/forms"
 const requestFormsInformations = "/valide_forms"
 const requestAddUser = "/players"
 let idFormsGeneral = null
-
+let EloSelected = null
 window.addEventListener("load", (event) => {
 
     const options = {
@@ -81,6 +81,10 @@ function mostrarVagas(qtdVagas) {
 
 }
 
+// Getting elo
+function GetElo(a){
+    EloSelected = a
+}
 
 // SALVAR INFORMACOES NO BANCO DE DADOS
 function getInformationsUser() {
@@ -88,7 +92,7 @@ function getInformationsUser() {
 
     const UserNick = document.getElementById("userNick").value;
     const UserTag = document.getElementById("userTag").value;
-    const UserElo = document.getElementById("userElo").value;
+    const UserElo = EloSelected;
 
     dataUsers = {
         "name": UserNick,
@@ -96,7 +100,13 @@ function getInformationsUser() {
         "elo": UserElo
     }
 
-    confirmarInclusao()
+    // validação: todos obrigatórios
+    if (!UserNick || !UserTag || !EloSelected) {
+        alert("É necessário preencher Nickname, User Tag e selecionar o Elo.");
+        return; // para a função aqui
+    }
+
+    confirmarInclusao(dataUsers);
 }
 
 function addUser(data) {
