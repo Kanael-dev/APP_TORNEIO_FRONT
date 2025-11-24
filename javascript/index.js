@@ -217,14 +217,20 @@ const imagens = [
 ];
 
 const imagem = document.getElementById("imagem")
-imagens.forEach(src => {
-    const link = document.createElement("a")
+imagens.forEach((src, index) => {
+    const link = document.createElement("a");
     link.href = "#";
 
-    const img = document.createElement("img")
+    const img = document.createElement("img");
     img.src = src;
+
+    
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
+        GetElo(index + 1);     
+    });
 
     link.appendChild(img);
     imagem.appendChild(link);
-}); 
+});
 
