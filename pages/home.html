@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const tokenAtual = localStorage.getItem("authToken")
+
+        if(tokenAtual == null){
+            alert("Voce nao tem permissao para acessar aqui")
+            window.location.href="./login.html"
+        } else {
+            alert("Voce esta authenticado")
+        }
+    </script>
+</body>
+</html>
