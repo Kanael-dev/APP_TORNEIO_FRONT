@@ -9,25 +9,43 @@
 <body>
     
     <div class="loading" id="loading_settings"></div>
-    <div class="container">
+    <div class="page">
+        <div class="container">
+            <div class="form-header">
+                <p id="TitleTorneio">Test</p>
+            </div>
 
-        <div id="formsCadastroUser">
-            <input placeholder="Nick" type="text" id="userNick" required/>
-            <input placeholder="Tag" type="text" id="userTag" required/>
-            <!-- hhhh<input placeholder="Elo" type="text" id="userElo" required/> -->
-            <div id="imagem"></div>
-        </div>
-        
-        <div id="btnCadastrarUser">
-            <button id="botao" onclick="getInformationsUser()">Cadastre-se</button>
-        </div>
-        <div id="aaaa">
-            <p id="qtdVagas"></p>
-            <p id="numVagas"></p>
-        </div>
-        <p id="statusRequest"></p>
+            <div id="formsCadastroUser" class="form-grid">
+            <div class="field full">
+                <label for="userNick">Nick</label>
+                <input placeholder="Nick" type="text" id="userNick" required />
+            </div>
+            <div class="field full">
+                <label for="userTag">Tag</label>
+                <div class="input-with-prefix">
+                    <span class="tag-prefix">#</span>
+                    <input placeholder="Tag" type="text" id="userTag" required />
+                </div>
+            </div>
 
-
+                <div class="field full">
+                    <label>Elo</label>
+                    <div id="imagem"></div>
+                </div>
+            </div>
+            
+            <div class="bottom-bar">
+                <div id="aaaa" class="status-wrapper">
+                    <p id="qtdVagas"></p>
+                    <p id="numVagas"></p>
+                </div>
+                <div id="btnCadastrarUser">
+                    <button id="botao" onclick="getInformationsUser()">Cadastre-se</button>
+                </div>
+            </div>
+            <p id="statusRequest"></p>
+        </div>
+       
     </div>
     <script src="./javascript/index.js"></script>
 </body>

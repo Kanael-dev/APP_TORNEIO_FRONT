@@ -6,6 +6,7 @@ const requestFormsInformations = "/valide_forms"
 const requestAddUser = "/players"
 let idFormsGeneral = null
 let EloSelected = null
+let selectedEloCard = null
 window.addEventListener("load", (event) => {
 
     const options = {
@@ -26,7 +27,9 @@ window.addEventListener("load", (event) => {
                 mostrarMensagem.innerText = "Sem nenhum evento para o momento"
                 disponibilizaForms()
             } else {
+                const Title = document.getElementById("TitleTorneio")
                 const id = data["forms"];
+                Title.innerText = data["title"] + " - " + data["date"]
                 idFormsGeneral = id;
                 validadorUsuarios(id)
             }
@@ -74,16 +77,25 @@ function removeForms() {
 
 
 function mostrarVagas(qtdVagas) {
+    const labelVagas = document.getElementById("qtdVagas");
     const mostrarVagas = document.getElementById("numVagas");
 
-    const textUsers = qtdVagas
-    mostrarVagas.innerText = textUsers
+    if (labelVagas) labelVagas.innerText = "Vagas disponiveis:";
+    const textUsers = qtdVagas;
+    if (mostrarVagas) mostrarVagas.innerText = textUsers;
 
 }
 
 // Getting elo
-function GetElo(a){
+function GetElo(a, element){
     EloSelected = a
+    if (selectedEloCard) {
+        selectedEloCard.classList.remove("selected-elo")
+    }
+    if (element) {
+        element.classList.add("selected-elo")
+        selectedEloCard = element
+    }
 }
 
 // SALVAR INFORMACOES NO BANCO DE DADOS
@@ -120,7 +132,17 @@ function addUser(data) {
         .then((response) => response.json())
         .then((data) => {
             const messageUser = document.getElementById("statusRequest");
-            messageUser.innerText = data["message"]
+            const isOk = data["status"] === 200;
+            if (messageUser) {
+                messageUser.innerText = data["message"] || (isOk ? "Você foi cadastrado!" : "Não foi possível cadastrar.");
+            }
+            if (isOk) {
+                removeForms();
+                // Atualiza vagas consultando novamente o backend
+                if (idFormsGeneral) {
+                    validadorUsuarios(idFormsGeneral);
+                }
+            }
         })
         .catch((error) => console.error("Error:", error));
 }
@@ -204,16 +226,16 @@ function mostrarIdioma(lingua) {
 mostrarIdioma(lingua)
 
 const imagens = [
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
-    "imagens/foto cinza.webp",
+    "imagens/ferro.png",
+    "imagens/bronze.png",
+    "imagens/prata.png",
+    "imagens/ouro.png",
+    "imagens/platina.png",
+    "imagens/esmeralda.png",
+    "imagens/diamante.png",
+    "imagens/mestre.png",
+    "imagens/grao_mestre.png",
+    "imagens/desafiante.png",
 ];
 
 const imagem = document.getElementById("imagem")
@@ -227,7 +249,7 @@ imagens.forEach((src, index) => {
     
     link.addEventListener("click", function (event) {
         event.preventDefault();
-        GetElo(index + 1);     
+        GetElo(index + 1, link);     
     });
 
     link.appendChild(img);

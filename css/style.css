@@ -1,41 +1,83 @@
-/* ===== Reset básico ===== */
+/* ===== Reset ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* ===== Fundo e centralização ===== */
+/* ===== Background ===== */
 body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(135deg, #141e30, #243b55);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 12px;
     color: #fff;
 }
 
-/* ===== Container principal ===== */
-.container {
-    background: rgba(255, 255, 255, 0.06);
-    padding: 30px;
-    border-radius: 15px;
-    width: 350px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    text-align: center;
+.page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-/* ===== Inputs ===== */
+/* ===== Card ===== */
+.container {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 18px 16px 14px;
+    border-radius: 16px;
+    width: min(460px, 94vw);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-header {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: left;
+}
+
+/* ===== Form Grid ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 13px;
+    color: #dfe7ff;
+    padding-left: 4px;
+}
+
 #formsCadastroUser input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+    padding: 9px 12px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 14px;
     outline: none;
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
@@ -50,57 +92,150 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* ===== Botão ===== */
+.input-with-prefix {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-prefix {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 8%;
+    min-width: 32px;
+    padding: 10px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #e9eef6;
+    background: transparent;
+    font-weight: 700;
+}
+
+/* ===== Images (Elo) ===== */
+#imagem {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    justify-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 6px;
+    margin: 6px 0 2px;
+}
+
+#imagem a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2px;
+    width: 100%;
+    max-width: 115px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#imagem a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+#imagem a.selected-elo {
+    box-shadow: 0 0 0 3px #7dd3fc, 0 12px 24px rgba(0, 0, 0, 0.2);
+    animation: pulse-border 1.4s ease-in-out infinite;
+}
+
+#imagem a img {
+    width: 100%;
+    height: 58px;
+    object-fit: contain;
+}
+
+#imagem a img:hover {
+    opacity: 0.9;
+}
+
+/* ===== Footer / Button ===== */
+.footer-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
 button {
     width: 100%;
     padding: 12px;
-    margin-top: 10px;
-    background: #00c6ff;
+    min-height: 44px;
+    background: linear-gradient(120deg, #7dd3fc, #60a5fa);
     border: none;
     border-radius: 8px;
-    font-size: 17px;
-    color: #000;
-    font-weight: bold;
+    font-size: 15px;
+    color: #0b1726;
+    font-weight: 700;
     cursor: pointer;
     transition: 0.2s;
 }
 
 button:hover {
-    background: #0096c7;
+    filter: brightness(0.95);
+    transform: translateY(-1px);
 }
 
-/* ===== Texto de vagas ===== */
+/* ===== Status ===== */
 #qtdVagas {
-    margin: 15px 0;
+    margin: 15px 0 4px;
     font-size: 18px;
     font-weight: bold;
 }
 
-/* ===== Status da requisição ===== */
 #statusRequest {
-    margin-top: 20px;
-    font-size: 16px;
+    margin-top: 8px;
+    font-size: 14px;
     color: #00ff99;
     font-weight: bold;
     min-height: 20px;
 }
 
-/* ===== Loading opcional ===== */
-body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(135deg, #141e30, #243b55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+.status-wrapper {
+    text-align: left;
 }
 
-/* Overlay de loading cobrindo toda a tela */
+/* ===== Bottom bar ===== */
+.bottom-bar {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.bottom-bar #btnCadastrarUser button {
+    width: 100%;
+}
+
+/* ===== Discord Float ===== */
+.discord-float {
+    position: absolute;
+    left: -70px;
+    bottom: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #e9eef6;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    font-weight: 700;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+}
+
+/* ===== Loading overlay ===== */
 .loading {
-    position: fixed;      /* cobre o viewport inteiro */
-    inset: 0;             /* equivale a top/right/bottom/left: 0 */
+    position: fixed;
+    inset: 0;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
@@ -108,7 +243,6 @@ body {
     z-index: 9999;
 }
 
-/* Círculo girando */
 .loading::before {
     content: "";
     width: 60px;
@@ -119,34 +253,46 @@ body {
     animation: spin 1s linear infinite;
 }
 
-/* Animação */
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
 }
 
-
-/* ===== Container Imagens ===== */
-#imagem {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 3px #7dd3fc, 0 12px 24px rgba(0, 0, 0, 0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(125, 211, 252, 0.45), 0 14px 26px rgba(0, 0, 0, 0.25); }
+    100% { box-shadow: 0 0 0 3px #7dd3fc, 0 12px 24px rgba(0, 0, 0, 0.2); }
 }
 
-#imagem a img {
-    width: 100%;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
-}
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
 
-#imagem a img:hover {
-    opacity: 0.8;
-    transform: scale(1.03);
+    .container {
+        width: 95vw;
+        padding: 14px 12px;
+        gap: 8px;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    #imagem {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 6px;
+    }
+
+    #imagem a img {
+        height: 50px;
+    }
+
+    .discord-float {
+        left: -10px;
+        bottom: -24px;
+    }
 }
