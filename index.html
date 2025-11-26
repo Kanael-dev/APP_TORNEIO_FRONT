@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div class="loading" id="loading_settings"></div>
     <div class="page">
-        <div class="container">
-            <div class="form-header">
-                <p id="TitleTorneio">Test</p>
-            </div>
-
-            <div id="formsCadastroUser" class="form-grid">
-            <div class="field full">
-                <label for="userNick">Nick</label>
-                <input placeholder="Nick" type="text" id="userNick" required />
-            </div>
-            <div class="field full">
-                <label for="userTag">Tag</label>
-                <div class="input-with-prefix">
-                    <span class="tag-prefix">#</span>
-                    <input placeholder="Tag" type="text" id="userTag" required />
-                </div>
-            </div>
-
-                <div class="field full">
-                    <label>Elo</label>
-                    <div id="imagem"></div>
-                </div>
-            </div>
-            
-            <div class="bottom-bar">
-                <div id="aaaa" class="status-wrapper">
-                    <p id="qtdVagas"></p>
-                    <p id="numVagas"></p>
-                </div>
-                <div id="btnCadastrarUser">
-                    <button id="botao" onclick="getInformationsUser()">Cadastre-se</button>
-                </div>
-            </div>
-            <p id="statusRequest"></p>
+      <div class="container">
+        <div class="form-header">
+          <p id="TitleTorneio">Test</p>
         </div>
+
+        <div id="formsCadastroUser" class="form-grid">
+          <div class="field full">
+            <label for="userNick">Nick</label>
+            <input placeholder="Nick" type="text" id="userNick" required />
+          </div>
+          <div class="field full">
+            <label for="userTag">Tag</label>
+            <div class="input-with-prefix">
+              <span class="tag-prefix">#</span>
+              <input placeholder="Tag" type="text" id="userTag" required />
+            </div>
+          </div>
+
+          <div class="field full">
+            <label>Elo</label>
+            <div id="imagem"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div id="aaaa" class="status-wrapper">
+            <p id="qtdVagas"></p>
+            <p id="numVagas"></p>
+          </div>
+          <div id="btnCadastrarUser">
+            <button id="botao" onclick="getInformationsUser()">
+              Cadastre-se
+            </button>
+          </div>
+        </div>
+        <p id="statusRequest"></p>
+      </div>
     </div>
     <div class="floating-actions">
-        <a class="fab discord" href="#" aria-label="Discord">Discord</a>
-        <a class="fab github" href="#" aria-label="GitHub">GitHub</a>
-        <a class="fab admin" href="#" aria-label="Portal Admin">Admin</a>
+      <a class="fab discord" href="https://discord.gg/WR7HU3k3" aria-label="Discord">
+        <img src="./imagens/discord.png" alt="Discord" />
+      </a>
+      <a class="fab github" href="#" aria-label="GitHub">
+        <img src="./imagens/github.png" alt="Github" />
+      </a>
+      <a class="fab admin" href="./pages/login.html" aria-label="Portal Admin">
+        <img src="./imagens/config.png" alt="Config" />
+      </a>
     </div>
     <script src="./javascript/index.js"></script>
-</body>
+  </body>
 </html>

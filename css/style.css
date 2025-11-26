@@ -246,8 +246,14 @@ button:hover {
     background: rgba(255, 255, 255, 0.18);
 }
 
-.fab.discord { background: linear-gradient(135deg, #7289da, #5865f2); color: #f8f8ff; }
-.fab.github { background: #111827; color: #f1f5f9; }
+.fab img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.fab.discord { background: linear-gradient(135deg, #7289da, #5865f2); color: #f8f8ff00; }
+.fab.github { background: #ffffff; color: #f1f5f9; }
 .fab.admin { background: linear-gradient(135deg, #7dd3fc, #60a5fa); color: #0b1726; }
 
 @media (max-width: 600px) {
