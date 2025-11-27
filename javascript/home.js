@@ -6,7 +6,7 @@ const formsAtivo = "/forms"
 const requestFormsInformations = "/valide_forms"
 const requestAddUser = "/players"
 let idFormsGeneral = null
-const tokenUser = localStorage.getitem("authToken")
+const tokenUser = localStorage.getItem("authToken")
 
 
 // Valida se o usuario esta logado
