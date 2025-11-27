@@ -31,14 +31,14 @@ function requestUser(userEmail, userSenha){
         body: JSON.stringify(DataUsers)
     })
     .then(async response => {
-        console.log(response.ok);      // ✔ funciona
-        console.log(response.status);  // ✔ funciona
+        console.log(response.ok);  
+        console.log(response.status); 
     
-        const data = await response.json(); // só agora pega o JSON
+        const data = await response.json(); 
     
         if (!response.ok) {
             console.log("Erro:", data.message);
-            return; // não continua
+            return;
         }
     
         console.log("Token gerado:", data.token);
