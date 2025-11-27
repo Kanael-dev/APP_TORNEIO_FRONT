@@ -7,6 +7,8 @@ function getInformationsUser() {
     const password = document.getElementById("userPassword").value;
 
     if (!email || !password) {
+        console.log("Nao autorizado!")
+        document.getElementById("errorMessage").innerText = "Email ou senha nao preenchidos";
         return JSON.stringify({ message: "Necessário preencher todos os campos", "status": 0 });
     }
 
