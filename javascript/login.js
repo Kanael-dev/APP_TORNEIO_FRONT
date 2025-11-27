@@ -38,6 +38,8 @@ function requestUser(userEmail, userSenha){
     
         if (!response.ok) {
             console.log("Erro:", data.message);
+            const divUser = document.getElementById("formsCadastroUser")
+            divUser.innerHTML = "<p style='color:red;'>Não autorizado</p>";
             return;
         }
     
